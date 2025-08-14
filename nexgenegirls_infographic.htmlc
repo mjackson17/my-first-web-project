@@ -1,0 +1,352 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>NexGeneGirls: Building the Future of STEM</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 600px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 350px;
+            max-height: 400px;
+        }
+        @media (min-width: 768px) {
+            .chart-container {
+                height: 400px;
+            }
+        }
+        .flow-step {
+            display: flex;
+            align-items: center;
+            margin-bottom: 1.5rem;
+        }
+        .flow-step-icon {
+            flex-shrink: 0;
+            width: 3rem;
+            height: 3rem;
+            border-radius: 9999px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: white;
+            font-weight: bold;
+            font-size: 1.25rem;
+        }
+        .flow-step-content {
+            margin-left: 1rem;
+        }
+        .flow-connector {
+            width: 2px;
+            height: 3rem;
+            margin-left: 1.45rem;
+        }
+        .gemini-output {
+            min-height: 150px;
+            transition: all 0.3s ease-in-out;
+        }
+        .loader {
+            border: 4px solid #f3f3f3;
+            border-radius: 50%;
+            border-top: 4px solid #58508d;
+            width: 40px;
+            height: 40px;
+            animation: spin 1s linear infinite;
+            margin: 2rem auto;
+        }
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
+        }
+    </style>
+</head>
+<body class="bg-gray-50">
+
+    <div class="container mx-auto p-4 md:p-8">
+
+        <header class="text-center mb-12">
+            <h1 class="text-4xl md:text-5xl font-bold text-[#003f5c] mb-2">NexGeneGirls Program Model</h1>
+            <p class="text-lg text-[#58508d]">A Proven Pathway for Empowering Future Women Leaders in STEM</p>
+        </header>
+
+        <main>
+            <section id="pipeline" class="mb-16">
+                <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">The Four-Phase Pipeline to Success</h2>
+                <div class="max-w-3xl mx-auto">
+                    <div class="flow-step">
+                        <div class="flow-step-icon bg-[#003f5c]">1</div>
+                        <div class="flow-step-content">
+                            <h3 class="font-bold text-xl text-[#003f5c]">Recruitment & Selection</h3>
+                            <p class="text-gray-600">A multi-stage vetting process including applications, interviews, and reference checks to identify high-potential candidates.</p>
+                        </div>
+                    </div>
+                    <div class="flow-connector bg-[#003f5c]"></div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon bg-[#58508d]">2</div>
+                        <div class="flow-step-content">
+                            <h3 class="font-bold text-xl text-[#58508d]">Bootcamp & Orientation</h3>
+                            <p class="text-gray-600">Intensive, hands-on training in foundational lab skills to prepare participants for their internships.</p>
+                        </div>
+                    </div>
+                     <div class="flow-connector bg-[#58508d]"></div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon bg-[#bc5090]">3</div>
+                        <div class="flow-step-content">
+                            <h3 class="font-bold text-xl text-[#bc5090]">The Science Academy</h3>
+                            <p class="text-gray-600">An 8-week immersive summer experience combining research, mentorship, and leadership development.</p>
+                        </div>
+                    </div>
+                     <div class="flow-connector bg-[#bc5090]"></div>
+                    <div class="flow-step">
+                        <div class="flow-step-icon bg-[#ff6361]">4</div>
+                        <div class="flow-step-content">
+                            <h3 class="font-bold text-xl text-[#ff6361]">Poster Session & Celebration</h3>
+                            <p class="text-gray-600">A capstone event where participants present their research to the community, industry leaders, and sponsors.</p>
+                        </div>
+                    </div>
+                </div>
+            </section>
+
+            <section id="bootcamp" class="mb-16">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Bootcamp: Building Core Competencies</h2>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">The orientation bootcamp provides the essential skills needed to thrive in a professional lab environment. This chart shows the key areas of focus during this critical training phase.</p>
+                    <div class="chart-container">
+                        <canvas id="bootcampSkillsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="academy" class="mb-16">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Inside the Science Academy</h2>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">The 8-week Science Academy is a multifaceted experience. Here's a breakdown of how participants spend their time, balancing intensive research with vital professional development.</p>
+                    <div class="chart-container">
+                        <canvas id="academyBreakdownChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="research" class="mb-16">
+                 <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">Cutting-Edge Research Areas</h2>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Participants contribute to high-impact research projects across various biomedical fields. These examples highlight the complexity and relevance of the science they engage in.</p>
+                    <div class="chart-container">
+                        <canvas id="researchProjectsChart"></canvas>
+                    </div>
+                </div>
+            </section>
+
+            <section id="gemini-explore" class="mb-16">
+                <div class="bg-white rounded-lg shadow-md p-6">
+                    <h2 class="text-3xl font-bold text-center text-[#003f5c] mb-8">✨ Explore STEM Careers</h2>
+                    <p class="text-center text-gray-600 max-w-2xl mx-auto mb-8">Curious about the research fields at NexGeneGirls? Click a topic below to get a simple explanation and discover potential career paths, generated by AI.</p>
+                    <div class="flex justify-center flex-wrap gap-4 mb-8">
+                        <button onclick="getCareerInfo('Cancer Biology')" class="bg-[#bc5090] text-white font-bold py-2 px-4 rounded-full hover:bg-[#a3447e] transition-colors">Cancer Biology</button>
+                        <button onclick="getCareerInfo('Developmental Biology & Bioinformatics')" class="bg-[#ff6361] text-white font-bold py-2 px-4 rounded-full hover:bg-[#e05552] transition-colors">Developmental Biology & Bioinformatics</button>
+                        <button onclick="getCareerInfo('Gene Editing')" class="bg-[#ffa600] text-white font-bold py-2 px-4 rounded-full hover:bg-[#e59400] transition-colors">Gene Editing</button>
+                    </div>
+                    <div id="gemini-output" class="gemini-output bg-gray-100 rounded-lg p-6 max-w-3xl mx-auto">
+                        <p class="text-center text-gray-500">Select a topic to learn more.</p>
+                    </div>
+                </div>
+            </section>
+
+        </main>
+
+        <footer class="text-center mt-12 py-6 border-t">
+            <p class="text-gray-600">NexGeneGirls Infographic | Empowering the Next Generation of Scientists</p>
+        </footer>
+
+    </div>
+
+    <script>
+        const wrapLabel = (label) => {
+            const maxLength = 16;
+            if (label.length <= maxLength) {
+                return label;
+            }
+            const words = label.split(' ');
+            const lines = [];
+            let currentLine = '';
+            for (const word of words) {
+                if ((currentLine + word).length > maxLength) {
+                    lines.push(currentLine.trim());
+                    currentLine = '';
+                }
+                currentLine += word + ' ';
+            }
+            lines.push(currentLine.trim());
+            return lines;
+        };
+        
+        const tooltipTitleCallback = (tooltipItems) => {
+            const item = tooltipItems[0];
+            let label = item.chart.data.labels[item.dataIndex];
+            if (Array.isArray(label)) {
+              return label.join(' ');
+            } else {
+              return label;
+            }
+        };
+
+        const vibrantPalette = {
+            blue: '#003f5c',
+            purple: '#58508d',
+            magenta: '#bc5090',
+            orange: '#ff6361',
+            yellow: '#ffa600'
+        };
+
+        new Chart(document.getElementById('bootcampSkillsChart'), {
+            type: 'doughnut',
+            data: {
+                labels: ['Basic Laboratory Techniques', 'General Biosafety', 'Molecular Biology Skills'],
+                datasets: [{
+                    label: 'Bootcamp Focus',
+                    data: [40, 30, 30],
+                    backgroundColor: [vibrantPalette.blue, vibrantPalette.purple, vibrantPalette.magenta],
+                    borderColor: '#fff',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('academyBreakdownChart'), {
+            type: 'pie',
+            data: {
+                labels: ['Research Internships (4 days/wk)', 'Leadership & Give-Back (1 day/wk)', 'Enrichment & Mentorship'],
+                datasets: [{
+                    label: 'Weekly Time Allocation',
+                    data: [70, 20, 10],
+                    backgroundColor: [vibrantPalette.purple, vibrantPalette.magenta, vibrantPalette.orange],
+                    borderColor: '#fff',
+                    borderWidth: 4
+                }]
+            },
+            options: {
+                responsive: true,
+                maintainAspectRatio: false,
+                plugins: {
+                    legend: {
+                        position: 'bottom',
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        new Chart(document.getElementById('researchProjectsChart'), {
+            type: 'bar',
+            data: {
+                labels: [
+                    wrapLabel('Cancer Biology'),
+                    wrapLabel('Developmental Biology & Bioinformatics'),
+                    wrapLabel('Gene Editing and Cancer Research')
+                ],
+                datasets: [{
+                    label: 'Example Research Fields',
+                    data: [1, 1, 1],
+                    backgroundColor: [vibrantPalette.magenta, vibrantPalette.orange, vibrantPalette.yellow],
+                    borderColor: [vibrantPalette.magenta, vibrantPalette.orange, vibrantPalette.yellow],
+                    borderWidth: 1
+                }]
+            },
+            options: {
+                indexAxis: 'y',
+                responsive: true,
+                maintainAspectRatio: false,
+                scales: {
+                    x: {
+                        display: false,
+                    },
+                    y: {
+                        ticks: {
+                            font: {
+                                size: 14
+                            }
+                        }
+                    }
+                },
+                plugins: {
+                    legend: {
+                        display: false
+                    },
+                    tooltip: {
+                        callbacks: {
+                           title: tooltipTitleCallback
+                        }
+                    }
+                }
+            }
+        });
+
+        const getCareerInfo = async (topic) => {
+            const outputDiv = document.getElementById('gemini-output');
+            outputDiv.innerHTML = '<div class="loader"></div>';
+
+            const prompt = `You are a helpful career advisor for high school students. Explain the field of "${topic}" in one paragraph, in simple and exciting terms for a high school student interested in STEM. Then, list 5 potential career paths in this field. For each career path, provide a one-sentence description of what they do. Format the output with a heading '### Explanation' for the paragraph and '### Career Paths' for the list. Use markdown for the list items.`;
+            
+            const apiKey = "";
+            const apiUrl = `https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash-preview-05-20:generateContent?key=${apiKey}`;
+            
+            try {
+                const response = await fetch(apiUrl, {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ contents: [{ parts: [{ text: prompt }] }] })
+                });
+
+                if (!response.ok) {
+                    throw new Error(`API request failed with status ${response.status}`);
+                }
+
+                const result = await response.json();
+                
+                if (result.candidates && result.candidates.length > 0 && result.candidates[0].content.parts.length > 0) {
+                    let text = result.candidates[0].content.parts[0].text;
+                    
+                    text = text.replace(/### Explanation/g, '<h3 class="text-xl font-bold text-[#003f5c] mb-2">Explanation</h3>');
+                    text = text.replace(/### Career Paths/g, '<h3 class="text-xl font-bold text-[#003f5c] mt-4 mb-2">Career Paths</h3>');
+                    text = text.replace(/\* /g, '</li><li class="mb-2 ml-4">');
+                    text = `<ul>${text}</li></ul>`.replace('<ul></li>', '<ul>');
+                    
+                    outputDiv.innerHTML = text;
+                } else {
+                    outputDiv.innerHTML = '<p class="text-red-500 text-center">Sorry, something went wrong. Please try again.</p>';
+                }
+            } catch (error) {
+                console.error('Error fetching from Gemini API:', error);
+                outputDiv.innerHTML = `<p class="text-red-500 text-center">Error: Could not fetch information. ${error.message}</p>`;
+            }
+        };
+    </script>
+</body>
+</html>
